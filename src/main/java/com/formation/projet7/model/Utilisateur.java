@@ -1,13 +1,19 @@
 package com.formation.projet7.model;
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Utilisateur {
+@Table(uniqueConstraints={@UniqueConstraint(columnNames = {"username"})})
+public class Utilisateur implements Serializable {
 	
 	@Id
 	@GeneratedValue
@@ -17,9 +23,12 @@ public class Utilisateur {
 	private String username;
 	private String password;
 	
-	
+	@JsonIgnore
 	@OneToMany(mappedBy="emprunteur")
 	private List<Emprunt> emprunts;
+	
+	
+	private static final long serialVersionUID = 1L;
 	
 	public Utilisateur() {
 		

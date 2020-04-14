@@ -1,5 +1,6 @@
 package com.formation.projet7.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -10,7 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Emprunt {
+public class Emprunt implements Serializable {
 	
 
 	@Id
@@ -28,6 +29,8 @@ public class Emprunt {
 	private Date fin;
 	private boolean prolongation; 
 	private boolean actif;
+	
+	private static final long serialVersionUID = 1L;
 	
 	public Emprunt() {
 		

@@ -14,7 +14,7 @@ public class UserService implements IUserService {
 	UserRepo userRepo;
 	
 	@Override
-	public List<Utilisateur> listerUser() {
+	public List<Utilisateur> listerUsers() {
 		
 		List<Utilisateur> users = userRepo.findAll();
 		return users;

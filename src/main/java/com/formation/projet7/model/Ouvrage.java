@@ -1,5 +1,8 @@
 package com.formation.projet7.model;
 
+
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -7,9 +10,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
-public class Ouvrage {
+public class Ouvrage implements Serializable {
 	
 	@Id
 	@GeneratedValue
@@ -19,9 +24,11 @@ public class Ouvrage {
 	private String auteur_prenom;
 	private String edition;
 	private String genre;
-	
+	@JsonIgnore
 	@OneToMany(mappedBy="ouvrage")
-	private List<Exemplaire> exemplaires;
+	private List<Exemplaire> exemplaires = new ArrayList<Exemplaire>();
+	
+	private static final long serialVersionUID = 1L;
 	
 	public Ouvrage() {
 		
@@ -95,6 +102,5 @@ public class Ouvrage {
 		this.exemplaires = exemplaires;
 	}
 
-	
-	
+
 }

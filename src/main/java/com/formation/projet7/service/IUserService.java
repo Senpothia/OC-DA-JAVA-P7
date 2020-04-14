@@ -6,7 +6,7 @@ import com.formation.projet7.model.Utilisateur;
 
 public interface IUserService {
 	
-	List<Utilisateur> listerUser();
+	List<Utilisateur> listerUsers();
 	Utilisateur obtenirUser(Integer id);
 	Utilisateur obtenirUser(String string);
 	Utilisateur obtenirUserParEmail(String email);

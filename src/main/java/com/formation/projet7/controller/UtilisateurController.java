@@ -12,27 +12,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.formation.projet7.model.Ouvrage;
-import com.formation.projet7.service.jpa.OuvrageService;
+import com.formation.projet7.model.Utilisateur;
+import com.formation.projet7.repository.UserRepo;
+import com.formation.projet7.service.jpa.UserService;
 
 @RestController
 @RequestMapping("/biblio")
-public class OuvragesController {
-	
-	@Autowired
-	OuvrageService ouvrageService;
-	
-	@GetMapping("/ouvrage/liste")
-	public List<Ouvrage> tousLesOuvrages(){
-		
-		List<Ouvrage> ouvrages = ouvrageService.listerOuvrages();
- 		return ouvrages; 
-	}
-	
-	@PostMapping("/ouvrage/{id}")
-	public ResponseEntity<?> unOuvrage(@PathVariable Integer id) {
-		
-		Ouvrage ouvrage = ouvrageService.obtenirOuvrage(id);
-		return new ResponseEntity<>(ouvrage, HttpStatus.OK);
-	}
+public class UtilisateurController {
 
+	@Autowired
+	UserService userService;
+	
+	@GetMapping("/users")
+	public List<Utilisateur> tousLesUtilisateurs(){
+		
+		List<Utilisateur> users = userService.listerUsers();
+		return users;
+		
+	}
+	
+	@PostMapping("/users/{id}")
+	public ResponseEntity<?> oneUser(@PathVariable Integer id) {
+		
+		Utilisateur user = userService.obtenirUser(id);
+		return new ResponseEntity<>(user, HttpStatus.OK);
+	}
 }

@@ -1,5 +1,6 @@
 package com.formation.projet7.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -10,7 +11,7 @@ import javax.persistence.OneToMany;
 
 
 @Entity
-public class Exemplaire {
+public class Exemplaire implements Serializable {
 	
 	@Id
 	@GeneratedValue
@@ -25,14 +26,17 @@ public class Exemplaire {
 	private boolean disponible;
 	private boolean actif;
 	
+	private static final long serialVersionUID = 1L;
+	
 	public Exemplaire() {
 		
 	}
 
-	public Exemplaire(Integer id, Ouvrage ouvrage, boolean disponible, boolean actif) {
+	public Exemplaire(Integer id, Ouvrage ouvrage, List<Emprunt> emprunts, boolean disponible, boolean actif) {
 		super();
 		this.id = id;
 		this.ouvrage = ouvrage;
+		this.emprunts = emprunts;
 		this.disponible = disponible;
 		this.actif = actif;
 	}
@@ -53,6 +57,14 @@ public class Exemplaire {
 		this.ouvrage = ouvrage;
 	}
 
+	public List<Emprunt> getEmprunts() {
+		return emprunts;
+	}
+
+	public void setEmprunts(List<Emprunt> emprunts) {
+		this.emprunts = emprunts;
+	}
+
 	public boolean isDisponible() {
 		return disponible;
 	}
@@ -68,6 +80,6 @@ public class Exemplaire {
 	public void setActif(boolean actif) {
 		this.actif = actif;
 	}
-	
 
+	
 }
