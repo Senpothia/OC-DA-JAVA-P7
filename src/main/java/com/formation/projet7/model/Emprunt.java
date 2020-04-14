@@ -84,6 +84,5 @@ public class Emprunt {
 		this.actif = actif;
 	}
 	
-	
 
 }

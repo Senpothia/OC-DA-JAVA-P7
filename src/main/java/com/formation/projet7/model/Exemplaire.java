@@ -10,7 +10,7 @@ public class Exemplaire {
 	@Id
 	@GeneratedValue
 	private Integer id;
-	private int numero;
+	private Ouvrage ouvrage;
 	private boolean disponible;
 	private boolean actif;
 	
@@ -18,10 +18,10 @@ public class Exemplaire {
 		
 	}
 
-	public Exemplaire(Integer id, int numero, boolean disponible, boolean actif) {
+	public Exemplaire(Integer id, Ouvrage ouvrage, boolean disponible, boolean actif) {
 		super();
 		this.id = id;
-		this.numero = numero;
+		this.ouvrage = ouvrage;
 		this.disponible = disponible;
 		this.actif = actif;
 	}
@@ -34,12 +34,12 @@ public class Exemplaire {
 		this.id = id;
 	}
 
-	public int getNumero() {
-		return numero;
+	public Ouvrage getOuvrage() {
+		return ouvrage;
 	}
 
-	public void setNumero(int numero) {
-		this.numero = numero;
+	public void setOuvrage(Ouvrage ouvrage) {
+		this.ouvrage = ouvrage;
 	}
 
 	public boolean isDisponible() {
@@ -58,5 +58,5 @@ public class Exemplaire {
 		this.actif = actif;
 	}
 	
-	
+
 }

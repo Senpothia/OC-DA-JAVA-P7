@@ -1,5 +1,7 @@
 package com.formation.projet7.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -15,12 +17,14 @@ public class Ouvrage {
 	private String auteur_prenom;
 	private String edition;
 	private String genre;
+	private List<Exemplaire> exemplaires;
 	
 	public Ouvrage() {
 		
 	}
 
-	public Ouvrage(Integer id, String titre, String auteur_nom, String auteur_prenom, String edition, String genre) {
+	public Ouvrage(Integer id, String titre, String auteur_nom, String auteur_prenom, String edition, String genre,
+			List<Exemplaire> exemplaires) {
 		super();
 		this.id = id;
 		this.titre = titre;
@@ -28,6 +32,7 @@ public class Ouvrage {
 		this.auteur_prenom = auteur_prenom;
 		this.edition = edition;
 		this.genre = genre;
+		this.exemplaires = exemplaires;
 	}
 
 	public Integer getId() {
@@ -78,5 +83,14 @@ public class Ouvrage {
 		this.genre = genre;
 	}
 
+	public List<Exemplaire> getExemplaires() {
+		return exemplaires;
+	}
+
+	public void setExemplaires(List<Exemplaire> exemplaires) {
+		this.exemplaires = exemplaires;
+	}
+
+	
 	
 }
