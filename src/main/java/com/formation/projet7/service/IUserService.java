@@ -2,16 +2,16 @@ package com.formation.projet7.service;
 
 import java.util.List;
 
-import com.formation.projet7.model.User;
+import com.formation.projet7.model.Utilisateur;
 
 public interface IUserService {
 	
-	List<User> listerUser();
-	User obtenirUser(Integer id);
-	User obtenirUser(String string);
-	User obtenirUserParEmail(String email);
-	void ajouterUser(User user);
-	void modifierUser(User user);
-	void supprimerUser(User user);
+	List<Utilisateur> listerUser();
+	Utilisateur obtenirUser(Integer id);
+	Utilisateur obtenirUser(String string);
+	Utilisateur obtenirUserParEmail(String email);
+	void ajouterUser(Utilisateur user);
+	void modifierUser(Utilisateur user);
+	void supprimerUser(Utilisateur user);
 	
 }

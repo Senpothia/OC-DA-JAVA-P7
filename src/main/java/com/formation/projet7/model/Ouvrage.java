@@ -5,6 +5,8 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
 
 @Entity
 public class Ouvrage {
@@ -17,6 +19,8 @@ public class Ouvrage {
 	private String auteur_prenom;
 	private String edition;
 	private String genre;
+	
+	@OneToMany(mappedBy="ouvrage")
 	private List<Exemplaire> exemplaires;
 	
 	public Ouvrage() {

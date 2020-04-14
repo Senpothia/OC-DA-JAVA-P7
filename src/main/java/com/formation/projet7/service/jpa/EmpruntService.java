@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.formation.projet7.model.Emprunt;
 import com.formation.projet7.model.Exemplaire;
 import com.formation.projet7.model.Ouvrage;
-import com.formation.projet7.model.User;
+import com.formation.projet7.model.Utilisateur;
 import com.formation.projet7.repository.EmpruntRepo;
 import com.formation.projet7.repository.OuvrageRepo;
 import com.formation.projet7.service.IEmpruntService;
@@ -23,7 +23,7 @@ public class EmpruntService implements IEmpruntService {
 	OuvrageRepo ouvrageRepo;
 	
 	@Override
-	public List<Emprunt> listerUserEmprunt(User user) {
+	public List<Emprunt> listerUserEmprunt(Utilisateur user) {
 		
 		List<Emprunt> emprunts = empruntRepo.findByEmprunteur(user);
 		return emprunts;

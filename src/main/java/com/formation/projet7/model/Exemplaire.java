@@ -1,8 +1,13 @@
 package com.formation.projet7.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
 
 @Entity
 public class Exemplaire {
@@ -10,7 +15,13 @@ public class Exemplaire {
 	@Id
 	@GeneratedValue
 	private Integer id;
+	
+	@ManyToOne
 	private Ouvrage ouvrage;
+	
+	@OneToMany(mappedBy="exemplaire")
+	private List<Emprunt> emprunts; 
+	
 	private boolean disponible;
 	private boolean actif;
 	

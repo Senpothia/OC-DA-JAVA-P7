@@ -2,11 +2,28 @@ package com.formation.projet7.model;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+@Entity
 public class Emprunt {
 	
+
+	@Id
+	@GeneratedValue
 	private Integer id;
+	
+	@ManyToOne
 	private Exemplaire exemplaire;
-	private User emprunteur;
+	
+	
+	@ManyToOne
+	private Utilisateur emprunteur;
+
 	private Date debut;
 	private Date fin;
 	private boolean prolongation; 
@@ -16,12 +33,10 @@ public class Emprunt {
 		
 	}
 
-	public Emprunt(Integer id, Exemplaire exemplaire, User emprunteur, Date debut, Date fin, boolean prolongation,
-			boolean actif) {
+	public Emprunt(Integer id, Exemplaire exemplaire, Date debut, Date fin, boolean prolongation, boolean actif) {
 		super();
 		this.id = id;
 		this.exemplaire = exemplaire;
-		this.emprunteur = emprunteur;
 		this.debut = debut;
 		this.fin = fin;
 		this.prolongation = prolongation;
@@ -42,14 +57,6 @@ public class Emprunt {
 
 	public void setExemplaire(Exemplaire exemplaire) {
 		this.exemplaire = exemplaire;
-	}
-
-	public User getEmprunteur() {
-		return emprunteur;
-	}
-
-	public void setEmprunteur(User emprunteur) {
-		this.emprunteur = emprunteur;
 	}
 
 	public Date getDebut() {
@@ -83,6 +90,6 @@ public class Emprunt {
 	public void setActif(boolean actif) {
 		this.actif = actif;
 	}
-	
 
+	
 }

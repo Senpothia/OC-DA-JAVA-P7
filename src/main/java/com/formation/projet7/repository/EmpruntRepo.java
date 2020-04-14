@@ -5,10 +5,10 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.formation.projet7.model.Emprunt;
-import com.formation.projet7.model.User;
+import com.formation.projet7.model.Utilisateur;
 
 public interface EmpruntRepo extends JpaRepository<Emprunt, Integer> {
 
-	List<Emprunt> findByEmprunteur(User user);
+	List<Emprunt> findByEmprunteur(Utilisateur utilisateur);
 
 }

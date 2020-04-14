@@ -3,7 +3,7 @@ package com.formation.projet7.service.jpa;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.formation.projet7.model.User;
+import com.formation.projet7.model.Utilisateur;
 import com.formation.projet7.repository.UserRepo;
 import com.formation.projet7.service.IUserService;
 
@@ -14,47 +14,47 @@ public class UserService implements IUserService {
 	UserRepo userRepo;
 	
 	@Override
-	public List<User> listerUser() {
+	public List<Utilisateur> listerUser() {
 		
-		List<User> users = userRepo.findAll();
+		List<Utilisateur> users = userRepo.findAll();
 		return users;
 	}
 
 	@Override
-	public User obtenirUser(Integer id) {
+	public Utilisateur obtenirUser(Integer id) {
 		
-		User user = userRepo.getOne(id);
+		Utilisateur user = userRepo.getOne(id);
 		return user;
 	}
 
 	@Override
-	public User obtenirUser(String string) {
+	public Utilisateur obtenirUser(String string) {
 		
-		User user = userRepo.findByIdentity(string);
+		//User user = userRepo.findByIdentity(string);
+		return null;
+	}
+
+	@Override
+	public Utilisateur obtenirUserParEmail(String email) {
+
+		Utilisateur user = userRepo.findByUsername(email);
 		return user;
 	}
 
 	@Override
-	public User obtenirUserParEmail(String email) {
-
-		User user = userRepo.findByUsername(email);
-		return user;
-	}
-
-	@Override
-	public void ajouterUser(User user) {
+	public void ajouterUser(Utilisateur user) {
 		userRepo.save(user);
 		
 	}
 
 	@Override
-	public void modifierUser(User user) {
+	public void modifierUser(Utilisateur user) {
 		userRepo.save(user);
 		
 	}
 
 	@Override
-	public void supprimerUser(User user) {
+	public void supprimerUser(Utilisateur user) {
 		userRepo.delete(user);
 		
 	}
