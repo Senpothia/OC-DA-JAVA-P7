@@ -33,10 +33,12 @@ public class Emprunt {
 		
 	}
 
-	public Emprunt(Integer id, Exemplaire exemplaire, Date debut, Date fin, boolean prolongation, boolean actif) {
+	public Emprunt(Integer id, Exemplaire exemplaire, Utilisateur emprunteur, Date debut, Date fin,
+			boolean prolongation, boolean actif) {
 		super();
 		this.id = id;
 		this.exemplaire = exemplaire;
+		this.emprunteur = emprunteur;
 		this.debut = debut;
 		this.fin = fin;
 		this.prolongation = prolongation;
@@ -57,6 +59,14 @@ public class Emprunt {
 
 	public void setExemplaire(Exemplaire exemplaire) {
 		this.exemplaire = exemplaire;
+	}
+
+	public Utilisateur getEmprunteur() {
+		return emprunteur;
+	}
+
+	public void setEmprunteur(Utilisateur emprunteur) {
+		this.emprunteur = emprunteur;
 	}
 
 	public Date getDebut() {
@@ -91,5 +101,6 @@ public class Emprunt {
 		this.actif = actif;
 	}
 
+	
 	
 }

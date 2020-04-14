@@ -25,13 +25,15 @@ public class Utilisateur {
 		
 	}
 
-	public Utilisateur(Integer id, String nom, String prenom, String username, String password) {
+	public Utilisateur(Integer id, String nom, String prenom, String username, String password,
+			List<Emprunt> emprunts) {
 		super();
 		this.id = id;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.username = username;
 		this.password = password;
+		this.emprunts = emprunts;
 	}
 
 	public Integer getId() {
@@ -72,6 +74,14 @@ public class Utilisateur {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public List<Emprunt> getEmprunts() {
+		return emprunts;
+	}
+
+	public void setEmprunts(List<Emprunt> emprunts) {
+		this.emprunts = emprunts;
 	}
 
 	
