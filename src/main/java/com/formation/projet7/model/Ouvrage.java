@@ -1,0 +1,82 @@
+package com.formation.projet7.model;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
+public class Ouvrage {
+	
+	@Id
+	@GeneratedValue
+	private Integer id;
+	private String titre;
+	private String auteur_nom;
+	private String auteur_prenom;
+	private String edition;
+	private String genre;
+	
+	public Ouvrage() {
+		
+	}
+
+	public Ouvrage(Integer id, String titre, String auteur_nom, String auteur_prenom, String edition, String genre) {
+		super();
+		this.id = id;
+		this.titre = titre;
+		this.auteur_nom = auteur_nom;
+		this.auteur_prenom = auteur_prenom;
+		this.edition = edition;
+		this.genre = genre;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getTitre() {
+		return titre;
+	}
+
+	public void setTitre(String titre) {
+		this.titre = titre;
+	}
+
+	public String getAuteur_nom() {
+		return auteur_nom;
+	}
+
+	public void setAuteur_nom(String auteur_nom) {
+		this.auteur_nom = auteur_nom;
+	}
+
+	public String getAuteur_prenom() {
+		return auteur_prenom;
+	}
+
+	public void setAuteur_prenom(String auteur_prenom) {
+		this.auteur_prenom = auteur_prenom;
+	}
+
+	public String getEdition() {
+		return edition;
+	}
+
+	public void setEdition(String edition) {
+		this.edition = edition;
+	}
+
+	public String getGenre() {
+		return genre;
+	}
+
+	public void setGenre(String genre) {
+		this.genre = genre;
+	}
+
+	
+}
