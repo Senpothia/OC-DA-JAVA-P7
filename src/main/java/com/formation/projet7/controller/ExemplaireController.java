@@ -29,7 +29,7 @@ public class ExemplaireController {
 	OuvrageService ouvrageService;
 	
 	@PostMapping("/exemplaires/{id}")
-	public ResponseEntity<?> tousLesExemplaires(@PathVariable Integer id){
+	public ResponseEntity<?> ExemplairesParOuvrage(@PathVariable Integer id){
 		
 		Ouvrage ouvrage = ouvrageService.obtenirOuvrage(id);
 		List<Exemplaire> exemplaires = ouvrage.getExemplaires();

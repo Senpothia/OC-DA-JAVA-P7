@@ -1,8 +1,11 @@
 package com.formation.projet7.model;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -22,6 +25,10 @@ public class Utilisateur implements Serializable {
 	private String prenom;
 	private String username;
 	private String password;
+	private boolean enabled;
+	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
+	private Set<UserRole> userRole = new HashSet<UserRole>();
 	
 	@JsonIgnore
 	@OneToMany(mappedBy="emprunteur")
@@ -34,14 +41,16 @@ public class Utilisateur implements Serializable {
 		
 	}
 
-	public Utilisateur(Integer id, String nom, String prenom, String username, String password,
-			List<Emprunt> emprunts) {
+	public Utilisateur(Integer id, String nom, String prenom, String username, String password, boolean enabled,
+			Set<UserRole> userRole, List<Emprunt> emprunts) {
 		super();
 		this.id = id;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.username = username;
 		this.password = password;
+		this.enabled = enabled;
+		this.userRole = userRole;
 		this.emprunts = emprunts;
 	}
 
@@ -85,12 +94,32 @@ public class Utilisateur implements Serializable {
 		this.password = password;
 	}
 
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	public Set<UserRole> getUserRole() {
+		return userRole;
+	}
+
+	public void setUserRole(Set<UserRole> userRole) {
+		this.userRole = userRole;
+	}
+
 	public List<Emprunt> getEmprunts() {
 		return emprunts;
 	}
 
 	public void setEmprunts(List<Emprunt> emprunts) {
 		this.emprunts = emprunts;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	
