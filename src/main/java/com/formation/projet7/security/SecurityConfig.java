@@ -1,5 +1,7 @@
 package com.formation.projet7.security;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -19,16 +21,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
-	@Autowired
-	
-	private UserDetailsService userSecurity;
-	
-	@Autowired
-	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
-		
-		auth.userDetailsService(userSecurity).passwordEncoder(new BCryptPasswordEncoder());
-		
-	}
+	@Autowired 
+	private DataSource dataSource; 
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -40,13 +34,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 				,"/images/*").permitAll()
 		.antMatchers(
 				"/biblio/"
-				,"/biblio/presentation").permitAll()
+				,"/biblio/presentation"
+				,"/biblio/compte").permitAll()
 		.anyRequest().authenticated()
 		.and()
 		.formLogin().loginPage("/biblio/connexion")
 		  .defaultSuccessUrl("/biblio/espace")
-		  .usernameParameter("username")
-          .passwordParameter("password")
+		  
           .failureUrl("/biblio/connexion?error=true")
           .permitAll()
           ;
@@ -58,10 +52,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		return new BCryptPasswordEncoder();
 	}
 	
-	public AuthenticationProvider authentificationProvider (UserSecurity userService, PasswordEncoder encoder) {
+	public AuthenticationProvider authentificationProvider (SecurityService securityService, PasswordEncoder encoder) {
 		
 		DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
-		auth.setUserDetailsService(userSecurity);
+		auth.setUserDetailsService(securityService);
 		auth.setPasswordEncoder(encoder);
 		return auth;
 	}
