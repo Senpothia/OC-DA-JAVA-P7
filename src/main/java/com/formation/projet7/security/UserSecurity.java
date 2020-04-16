@@ -1,6 +1,6 @@
 package com.formation.projet7.security;
-
 import java.nio.file.attribute.UserDefinedFileAttributeView;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -13,11 +13,13 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import com.formation.projet7.model.UserRole;
 import com.formation.projet7.model.Utilisateur;
 import com.formation.projet7.repository.UserRepo;
 
+@Service
 public class UserSecurity  implements UserDetailsService{
 	
 	@Autowired

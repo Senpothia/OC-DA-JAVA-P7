@@ -43,13 +43,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 				,"/biblio/presentation").permitAll()
 		.anyRequest().authenticated()
 		.and()
-		.formLogin().loginPage("/biblio/connexion")
-		  .defaultSuccessUrl("/biblio/espace")
+		.formLogin().loginPage("/login").loginProcessingUrl("/logincheck")
 		  .usernameParameter("username")
           .passwordParameter("password")
-          .failureUrl("/biblio/connexion?error=true")
-          .permitAll()
-          ;
+          .defaultSuccessUrl("/loginsuccess")
+          .failureUrl("/biblio/connexion?error=true").permitAll()
+          .and()
+          .logout().logoutUrl("/logout").logoutSuccessUrl("/login?logout").permitAll();
+          
+          
 		}
 		
 	@Bean

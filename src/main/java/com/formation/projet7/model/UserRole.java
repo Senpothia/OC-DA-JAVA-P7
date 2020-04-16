@@ -15,7 +15,7 @@ public class UserRole {
 	
 	@Id
 	@GeneratedValue
-	private Integer id;
+	private Integer userRoleId;
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "username")
 	private Utilisateur user;
@@ -27,25 +27,23 @@ public class UserRole {
 		
 	}
 
-	
-	public UserRole(Integer id, Utilisateur user, String role) {
+
+	public UserRole(Integer userRoleId, Utilisateur user, String role) {
 		super();
-		this.id = id;
+		this.userRoleId = userRoleId;
 		this.user = user;
 		this.role = role;
 	}
 
 
-	public Integer getId() {
-		return id;
+	public Integer getUserRoleId() {
+		return userRoleId;
 	}
 
 
-
-	public void setId(Integer id) {
-		this.id = id;
+	public void setUserRoleId(Integer userRoleId) {
+		this.userRoleId = userRoleId;
 	}
-
 
 
 	public Utilisateur getUser() {
@@ -53,21 +51,20 @@ public class UserRole {
 	}
 
 
-
 	public void setUser(Utilisateur user) {
 		this.user = user;
 	}
 
+
+	public String getRole() {
+		return role;
+	}
 
 
 	public void setRole(String role) {
 		this.role = role;
 	}
 
-
-	public String getRole() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
+	
 }

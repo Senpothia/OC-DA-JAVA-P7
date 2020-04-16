@@ -20,10 +20,11 @@ public class Utilisateur implements Serializable {
 	
 	@Id
 	@GeneratedValue
-	private Integer id;
+	private String username;
+	
 	private String nom;
 	private String prenom;
-	private String username;
+	
 	private String password;
 	private boolean enabled;
 	
@@ -41,10 +42,9 @@ public class Utilisateur implements Serializable {
 		
 	}
 
-	public Utilisateur(Integer id, String nom, String prenom, String username, String password, boolean enabled,
+	public Utilisateur(String nom, String prenom, String username, String password, boolean enabled,
 			Set<UserRole> userRole, List<Emprunt> emprunts) {
 		super();
-		this.id = id;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.username = username;
@@ -52,14 +52,6 @@ public class Utilisateur implements Serializable {
 		this.enabled = enabled;
 		this.userRole = userRole;
 		this.emprunts = emprunts;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
 	}
 
 	public String getNom() {
@@ -118,10 +110,5 @@ public class Utilisateur implements Serializable {
 		this.emprunts = emprunts;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-	
 
 }

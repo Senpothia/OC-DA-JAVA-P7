@@ -42,8 +42,8 @@
 
 			<div class="col">
 
-				<form class="formulaire" th:action="@{/connexion}"
-					th:object="${user}" method="post">
+				<form class="formulaire" th:action="@{/logincheck}"
+					 method="post">
 					<div>
 						<h3 style="color: red;" th:if="${error}">Erreur! Vérifiez vous
 							identifiants de connexion</h3>
@@ -51,12 +51,12 @@
 					</div>
 					<div class="form-group">
 						<label for="email">Email</label> <input type="text"
-							class="form-control" name="username">
+							class="form-control" name="username" id="username">
 
 					</div>
 					<div class="form-group">
 						<label for="password">Password</label> <input type="password"
-							class="form-control" name="password">
+							class="form-control" name="password" id="password">
 					</div>
 
 					<div class="float-right">
