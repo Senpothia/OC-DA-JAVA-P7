@@ -1,5 +1,8 @@
 package com.formation.projet7.bibliotheque.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -9,7 +12,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.formation.projet7.model.Profil;
 import com.formation.projet7.model.Utilisateur;
+import com.formation.projet7.repository.ProfilRepo;
 import com.formation.projet7.service.jpa.UserService;
 
 
@@ -19,6 +24,8 @@ public class BiblioController {
 	
 	@Autowired
 	private UserService userService;
+	@Autowired
+	ProfilRepo profilRepo;
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
@@ -36,21 +43,24 @@ public class BiblioController {
 	}
 	
 	@GetMapping("/connexion")
-	public String connexion() {
+	public String demandeConnexion() {
 		
 		return "connexion";
 	}
 	
-	@PostMapping("connexion")
-	public String entreeDemandeConnexion() {
+	/**
+	@PostMapping("/connexion")
+	public String reponseDemandeConnexion() {
 		
-		return "ok";
+		return "redirect:/espace";
 	}
+	*/
+	
 	
 	@GetMapping("/espace")
 	public String espace() {
-		
-		return "espace";
+		System.out.println("Connexion réussie!");
+		return "ok";
 	}
 	
 	@GetMapping("/compte")
@@ -66,10 +76,23 @@ public class BiblioController {
 		System.out.println("entree post enreg compte");
 		
 		utilisateur.setEnabled(true);
-		userService.ajouterUser(utilisateur);
 		String password = utilisateur.getPassword();
 		utilisateur.setPassword(passwordEncoder.encode(password));
+		Profil profil = new Profil();
+		profil.setPerfil("MEMBRE");
+		profilRepo.save(profil);
+		List<Profil> profils = utilisateur.getProfils();
+		if (profils == null) {
+			
+			profils = new ArrayList<Profil>();
+			profils.add(profil);
+		}else {
+			
+			profils.add(profil);
+		}
 		
+		utilisateur.setProfils(profils);
+		userService.ajouterUser(utilisateur);
 		
 		return "redirect:/";
 	}

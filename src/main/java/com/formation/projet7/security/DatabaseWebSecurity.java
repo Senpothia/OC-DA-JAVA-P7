@@ -22,10 +22,10 @@ public class DatabaseWebSecurity extends WebSecurityConfigurerAdapter {
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
 		auth.jdbcAuthentication().dataSource(dataSource)
-		.usersByUsernameQuery("select username, password, enabled from Utilisateur where username=?")
-		.authoritiesByUsernameQuery("select u.username, p.profil from UserProfil up " + 
-			"inner join Utilisateur u on u.id = up.idUser " + 
-			"inner join Profil p on p.id = up.idProfil " + 
+		.usersByUsernameQuery("select username, password, enabled from utilisateur where username=?")
+		.authoritiesByUsernameQuery("select u.username, p.perfil from user_profil up " + 
+			"inner join utilisateur u on u.id = up.id_user " + 
+			"inner join profil p on p.id = up.id_profil " + 
 			"where u.username = ?");
 	}
 
@@ -60,7 +60,8 @@ public class DatabaseWebSecurity extends WebSecurityConfigurerAdapter {
         // Todas las demás URLs de la Aplicación requieren autenticación
         .anyRequest().authenticated()
         // El formulario de Login no requiere autenticacion
-        .and().formLogin().loginPage("/login").permitAll()        
+        .and().formLogin().loginPage("/biblio/connexion")
+        .defaultSuccessUrl("/biblio/espace").permitAll()        
         .and().logout().permitAll();
     }
 	
