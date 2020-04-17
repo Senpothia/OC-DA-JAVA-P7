@@ -27,5 +27,12 @@ public class UsageController {
 		Utilisateur user = sessionService.obtenirUserSession(auth, session, model);
 		return Constants.EMPRUNTS;
 	}
+	
+	@GetMapping("/rubriques")
+	public String rubriques(Authentication auth, HttpSession session, Model model) {
+		Utilisateur user = sessionService.obtenirUserSession(auth, session, model);
+		
+		return Constants.RUBRIQUES;
+	}
 
 }
