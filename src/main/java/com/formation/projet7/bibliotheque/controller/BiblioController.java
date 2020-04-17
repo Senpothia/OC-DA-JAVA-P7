@@ -53,8 +53,9 @@ public class BiblioController {
 	}
 	
 	@GetMapping("/connexion")
-	public String demandeConnexion() {
+	public String demandeConnexion(Authentication auth, HttpSession session, Model model) {
 		
+		Utilisateur user = sessionService.obtenirUserSession(auth, session, model);
 		return Constants.PAGE_CONNEXION;
 	}
 	
@@ -63,7 +64,7 @@ public class BiblioController {
 		
 		System.out.println("Connexion réussie!");
 		Utilisateur user = sessionService.obtenirUserSession(auth, session, model);
-		return "ok";
+		return Constants.ESPACE_PERSONEL;
 	}
 	
 	@GetMapping("/compte")    // Transmission formulaire de création de compte
