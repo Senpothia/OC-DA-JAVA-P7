@@ -1,9 +1,18 @@
 package com.formation.projet7.service.jpa;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
+
+import com.formation.projet7.model.Profil;
 import com.formation.projet7.model.Utilisateur;
+import com.formation.projet7.repository.ProfilRepo;
 import com.formation.projet7.repository.UserRepo;
 import com.formation.projet7.service.IUserService;
 
@@ -56,6 +65,26 @@ public class UserService implements IUserService {
 	@Override
 	public void supprimerUser(Utilisateur user) {
 		userRepo.delete(user);
+		
+	}
+
+	@Override
+	public List<Utilisateur> getUserByProfil(Profil profil) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<String> getProfil(Authentication auth) {
+		Collection<? extends GrantedAuthority> roles = auth.getAuthorities();
+		List<String> profils = new ArrayList<String>();
+		for (GrantedAuthority role : roles) {
+			
+			String profil = role.getAuthority();
+			profils.add(profil);
+		}
+		return profils;
+		
 		
 	}
 
