@@ -31,8 +31,18 @@ public class UsageController {
 	@GetMapping("/rubriques")
 	public String rubriques(Authentication auth, HttpSession session, Model model) {
 		Utilisateur user = sessionService.obtenirUserSession(auth, session, model);
-		
+		model.addAttribute("historique", false);
 		return Constants.RUBRIQUES;
 	}
+	
+	@GetMapping("/emprunts/historique/")
+	public String tableEmpruntsHist(Authentication auth, HttpSession session, Model model) {
+		
+		Utilisateur user = sessionService.obtenirUserSession(auth, session, model);
+		model.addAttribute("historique", true);
+		return Constants.EMPRUNTS;
+	}
+	
+	
 
 }

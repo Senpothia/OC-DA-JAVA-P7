@@ -37,7 +37,14 @@
 		<!-- ----------------- -->
 		<div class="row d-flex justify-content-center">
 
-			<h1>Listes de vos ouvrages empruntés</h1>
+			<span th:unless="${historique}">
+				<h1>Listes de vos ouvrages empruntés</h1>
+			</span>
+			
+			<span th:if="${historique}">
+				<h1>Listes de tous vos emprunts</h1>
+			</span>
+
 		</div>
 
 
