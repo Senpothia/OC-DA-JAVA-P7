@@ -21,7 +21,6 @@ import com.formation.projet7.repository.ProfilRepo;
 import com.formation.projet7.service.jpa.SessionService;
 import com.formation.projet7.service.jpa.UserService;
 
-
 @Controller
 @RequestMapping("/biblio")
 public class BiblioController {
@@ -59,7 +58,6 @@ public class BiblioController {
 	@GetMapping("/espace")
 	public String espace(Authentication auth, HttpSession session, Model model) {
 		
-		System.out.println("Connexion réussie!");
 		Utilisateur user = sessionService.obtenirUserSession(auth, session, model);
 		return Constants.ESPACE_PERSONEL;
 	}
@@ -82,6 +80,17 @@ public class BiblioController {
 		return Constants.ESPACE_PERSONEL;
 	}
 	
+	
+	@GetMapping("/logout")		// Programmation logout
+	public String logout(HttpServletRequest request){
+		
+		SecurityContextLogoutHandler logoutHandler = new SecurityContextLogoutHandler();
+		logoutHandler.logout(request, null, null);
+		return "redirect:/biblio/";
+		
+	}
+	
+	// **************************************************************
 	// Test récupération données de l'utilisateur connecté 
 	
 	@GetMapping("/user")
@@ -101,15 +110,5 @@ public class BiblioController {
 	
 	}
 	
-	@GetMapping("/logout")
-	public String logout(HttpServletRequest request){
-		
-		SecurityContextLogoutHandler logoutHandler = new SecurityContextLogoutHandler();
-		logoutHandler.logout(request, null, null);
-		return "redirect:/biblio/";
-		
-	}
 	
-	
-
 }

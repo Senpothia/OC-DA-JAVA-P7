@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.security.core.Authentication;
 
+import com.formation.projet7.model.FormCompte;
 import com.formation.projet7.model.Profil;
 import com.formation.projet7.model.Utilisateur;
 
@@ -18,5 +19,6 @@ public interface IUserService {
 	void supprimerUser(Utilisateur user);
 	List<Utilisateur> getUserByProfil(Profil profil);
 	List<String> getProfil(Authentication auth);
+	FormCompte obtenirFormCompte(Utilisateur utilisateur);
 	
 }

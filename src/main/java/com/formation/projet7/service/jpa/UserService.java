@@ -11,6 +11,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.formation.projet7.model.FormCompte;
 import com.formation.projet7.model.Profil;
 import com.formation.projet7.model.Utilisateur;
 import com.formation.projet7.repository.ProfilRepo;
@@ -109,5 +110,18 @@ public class UserService implements IUserService {
 		return profils;
 		
 	}
+
+	@Override
+	public FormCompte obtenirFormCompte(Utilisateur utilisateur) {
+		
+		FormCompte formCompte = new FormCompte();
+		formCompte.setPrenom(utilisateur.getPrenom());
+		formCompte.setNom(utilisateur.getNom());
+		formCompte.setUsername(utilisateur.getUsername());
+		
+		return formCompte;
+	}
+	
+	
 
 }
