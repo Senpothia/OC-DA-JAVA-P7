@@ -25,7 +25,7 @@ public class UserService implements IUserService {
 	UserRepo userRepo;
 	
 	@Autowired
-	ProfilRepo profilRepo;
+	ProfilService profilService;
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
@@ -59,13 +59,13 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public void ajouterUser(Utilisateur user) {
+	public void ajouterUser(Utilisateur user, String role) {
 		user.setEnabled(true);
 		String password = user.getPassword();
 		
 		user.setPassword(passwordEncoder.encode(password));
 		
-		Profil profil = profilRepo.getByPerfil("USER");
+		Profil profil = profilService.obtenirProfil(role);
 		List<Profil> profils = user.getProfils();
 		if (profils == null) {
 			
@@ -120,6 +120,16 @@ public class UserService implements IUserService {
 		formCompte.setUsername(utilisateur.getUsername());
 		
 		return formCompte;
+	}
+
+	@Override
+	public void ajouterRoleUser(Utilisateur user, String role) {
+		
+		List<Profil> roles = user.getProfils();
+		Profil profil = profilService.obtenirProfil(role);
+		roles.add(profil);
+		userRepo.save(user);
+		
 	}
 	
 

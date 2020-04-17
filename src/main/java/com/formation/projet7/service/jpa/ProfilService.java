@@ -21,4 +21,10 @@ public class ProfilService implements IProfilService {
 		
 	}
 
+	@Override
+	public Profil obtenirProfil(String role) {
+		Profil profil = profilRepo.getByPerfil(role);
+		return profil;
+	}
+
 }

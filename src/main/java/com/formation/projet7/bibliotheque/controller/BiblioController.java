@@ -73,7 +73,7 @@ public class BiblioController {
 	@PostMapping("/compte")    // Enregistrement d'un compte
 	public String enregistrementCompte(Utilisateur utilisateur, HttpSession session) {
 		
-		userService.ajouterUser(utilisateur);
+		userService.ajouterUser(utilisateur, "USER");
 		session.setAttribute("USER", utilisateur);
 		session.setAttribute("authentification", true);
 		

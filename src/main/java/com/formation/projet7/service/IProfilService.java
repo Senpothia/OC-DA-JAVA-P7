@@ -9,5 +9,6 @@ import com.formation.projet7.model.Profil;
 public interface IProfilService {
 	
 	void creerProfil(String role);
+	Profil obtenirProfil(String role);
 	
 }

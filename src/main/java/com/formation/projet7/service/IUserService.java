@@ -14,11 +14,12 @@ public interface IUserService {
 	Utilisateur obtenirUserParId(Integer id);
 	Utilisateur obtenirUser(String string);
 	Utilisateur obtenirUserParEmail(String email);
-	void ajouterUser(Utilisateur user);
 	void modifierUser(Utilisateur user);
 	void supprimerUser(Utilisateur user);
 	List<Utilisateur> getUserByProfil(Profil profil);
 	List<String> getProfil(Authentication auth);
 	FormCompte obtenirFormCompte(Utilisateur utilisateur);
+	void ajouterUser(Utilisateur user, String role);
+	void ajouterRoleUser(Utilisateur user, String role);
 	
 }
