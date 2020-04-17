@@ -11,6 +11,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.formation.projet7.service.jpa.ProfilService;
+
 @Configuration
 @EnableWebSecurity
 public class DatabaseWebSecurity extends WebSecurityConfigurerAdapter {
@@ -56,6 +58,12 @@ public class DatabaseWebSecurity extends WebSecurityConfigurerAdapter {
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 	    return new BCryptPasswordEncoder();
+	}
+	
+	@Bean
+	public ProfilService serviceProfil() {
+		
+		return new ProfilService();
 	}
 
 }
