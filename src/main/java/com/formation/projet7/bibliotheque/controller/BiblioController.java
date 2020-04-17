@@ -1,16 +1,14 @@
 package com.formation.projet7.bibliotheque.controller;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.formation.projet7.constants.Constants;
-import com.formation.projet7.model.Profil;
 import com.formation.projet7.model.Utilisateur;
 import com.formation.projet7.repository.ProfilRepo;
 import com.formation.projet7.service.jpa.SessionService;
@@ -82,7 +79,7 @@ public class BiblioController {
 		session.setAttribute("USER", utilisateur);
 		session.setAttribute("authentification", true);
 		
-		return "redirect:/";
+		return Constants.ESPACE_PERSONEL;
 	}
 	
 	// Test récupération données de l'utilisateur connecté 
@@ -103,6 +100,16 @@ public class BiblioController {
 		return "ok";
 	
 	}
+	
+	@GetMapping("/logout")
+	public String logout(HttpServletRequest request){
+		
+		SecurityContextLogoutHandler logoutHandler = new SecurityContextLogoutHandler();
+		logoutHandler.logout(request, null, null);
+		return "redirect:/biblio/";
+		
+	}
+	
 	
 
 }

@@ -75,7 +75,7 @@
 				</div>
 				
 				<div class="row d-flex justify-content-center">
-					<a class="btn mb-1 bouton2" style="background-color: #a32fa9; color: white;" th:href="@{/logout}">Déconnexion</a>
+					<a class="btn mb-1 bouton2" style="background-color: #a32fa9; color: white;" th:href="@{/biblio/logout}">Déconnexion</a>
 				</div>
 
 			</div>
@@ -86,30 +86,21 @@
 						<strong>Fonctionnalités</strong></br>
 					</h3>
 				</div>
-			
-			<!--  
-				<span th:if="${utilisateur.membre}">
-					<div class="row d-flex justify-content-center">
-						<a href="/administration"><button type="button"
-								class="btn btn-success mb-1 bouton2">Administration</button></a>
-					</div>
-				</span>
-				
-				-->
 				
 				<div class="row d-flex justify-content-center">
-					<a href="/topo/emprunts"><button type="button"
+					<a 	th:href="@{/biblio/emprunts/{id}(id=${utilisateur.id})}"><button type="button"
+								
 							class="btn mb-1 bouton2" style="background-color: #a32fa9; color: white;">Emprunts en cours</button></a>
 				</div>
 
 
 				<div class="row d-flex justify-content-center">
-					<a href="/topo/demandes/recues"><button type="button"
+					<a 	th:href="@{/biblio/emprunts/historique/{id}(id=${utilisateur.id})}"><button type="button"
 							class="btn mb-1 bouton2" style="background-color: #a32fa9; color: white;">Historique des emprunts</button></a>
 				</div>
 
 				<div class="row d-flex justify-content-center">
-					<a href="/galerie/1"><button type="button"
+					<a href="/biblio/rubriques"><button type="button"
 							class="btn mb-1 bouton2" style="background-color: #a32fa9; color: white;">Emprunter</button></a>
 				</div>
 

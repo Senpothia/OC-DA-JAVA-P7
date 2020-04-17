@@ -33,36 +33,26 @@ public class DatabaseWebSecurity extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests() 
             	
-    	// Los recursos estáticos no requieren autenticación
+    	// Les ressources statiques ne requièrent pas d'authentification
         .antMatchers(                
                 "/images/*",
                 "/css/*").permitAll()
         
-        // Las vistas públicas no requieren autenticación
+        // Les pages publiques ne requièrent pas d'authentification
         .antMatchers(
         		"/biblio/"
 				,"/biblio/presentation"
 				,"/biblio/connexion"
 				,"/biblio/compte").permitAll()
-        
-        // Asignar permisos a URLs por ROLES
-        .antMatchers("/solicitudes/create/**",
-        			 "/solicitudes/save/**").hasAuthority("USUARIO")
-        
-        .antMatchers("/solicitudes/**").hasAnyAuthority("SUPERVISOR","ADMINISTRADOR")
-        .antMatchers("/vacantes/**").hasAnyAuthority("SUPERVISOR","ADMINISTRADOR")
-        .antMatchers("/categorias/**").hasAnyAuthority("SUPERVISOR","ADMINISTRADOR")
-        .antMatchers("/usuarios/**").hasAnyAuthority("ADMINISTRADOR")
-        
-        // Todas las demás URLs de la Aplicación requieren autenticación
+            
+        // Toutes les autres url requièrent une authentification
         .anyRequest().authenticated()
-        // El formulario de Login no requiere autenticacion
+        // le formulaire de login ne requièrent pas d'authentification
         .and().formLogin().loginPage("/biblio/connexion")
         .defaultSuccessUrl("/biblio/espace").permitAll()        
         .and().logout().permitAll();
     }
-	
-	
+		
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 	    return new BCryptPasswordEncoder();
