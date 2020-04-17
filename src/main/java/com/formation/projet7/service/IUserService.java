@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.springframework.security.core.Authentication;
 
-import com.formation.projet7.model.FormCompte;
 import com.formation.projet7.model.Profil;
 import com.formation.projet7.model.Utilisateur;
+import com.formation.projet7.model.auxiliaire.FormCompte;
 
 public interface IUserService {
 	

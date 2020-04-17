@@ -11,9 +11,9 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.formation.projet7.model.FormCompte;
 import com.formation.projet7.model.Profil;
 import com.formation.projet7.model.Utilisateur;
+import com.formation.projet7.model.auxiliaire.FormCompte;
 import com.formation.projet7.repository.ProfilRepo;
 import com.formation.projet7.repository.UserRepo;
 import com.formation.projet7.service.IUserService;

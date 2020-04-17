@@ -1,4 +1,4 @@
-package com.formation.projet7.model;
+package com.formation.projet7.model.auxiliaire;
 
 public class FormCompte {
 	
