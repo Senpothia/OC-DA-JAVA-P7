@@ -29,9 +29,6 @@ public class DatabaseWebSecurity extends WebSecurityConfigurerAdapter {
 			"where u.username = ?");
 	}
 
-	/**
-	 * Personalizamos el Acceso a las URLs de la aplicación
-	 */
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests() 
@@ -65,10 +62,6 @@ public class DatabaseWebSecurity extends WebSecurityConfigurerAdapter {
         .and().logout().permitAll();
     }
 	
-	/**
-	 *  Implementación de Spring Security que encripta passwords con el algoritmo Bcrypt
-	 * @return
-	 */
 	
 	@Bean
 	public PasswordEncoder passwordEncoder() {

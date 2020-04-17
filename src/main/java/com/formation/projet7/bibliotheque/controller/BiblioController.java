@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -19,6 +21,7 @@ import com.formation.projet7.constants.Constants;
 import com.formation.projet7.model.Profil;
 import com.formation.projet7.model.Utilisateur;
 import com.formation.projet7.repository.ProfilRepo;
+import com.formation.projet7.service.jpa.SessionService;
 import com.formation.projet7.service.jpa.UserService;
 
 
@@ -32,17 +35,20 @@ public class BiblioController {
 	ProfilRepo profilRepo;
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	@Autowired
+	SessionService sessionService;
 	
-
 	@GetMapping("/")
-	public String accueil() {
-		
+	public String accueil(Authentication auth, HttpSession session, Model model) {
+	
+		Utilisateur user = sessionService.obtenirUserSession(auth, session, model);
 		return Constants.PAGE_ACCUEUIL;
 	}
 	
 	@GetMapping("/presentation")
-	public String presentation() {
+	public String presentation(Authentication auth, HttpSession session, Model model) {
 		
+		Utilisateur user = sessionService.obtenirUserSession(auth, session, model);
 		return Constants.PAGE_PRESENTATION;
 	}
 	
@@ -52,22 +58,15 @@ public class BiblioController {
 		return Constants.PAGE_CONNEXION;
 	}
 	
-	/**
-	@PostMapping("/connexion")
-	public String reponseDemandeConnexion() {
-		
-		return "redirect:/espace";
-	}
-	*/
-	
-	
 	@GetMapping("/espace")
-	public String espace() {
+	public String espace(Authentication auth, HttpSession session, Model model) {
+		
 		System.out.println("Connexion réussie!");
+		Utilisateur user = sessionService.obtenirUserSession(auth, session, model);
 		return "ok";
 	}
 	
-	@GetMapping("/compte")
+	@GetMapping("/compte")    // Transmission formulaire de création de compte
 	public String creationCompte(Model model) {
 		
 		model.addAttribute("utilisateur", new Utilisateur());
@@ -75,28 +74,12 @@ public class BiblioController {
 		return Constants.CREATION_COMPTE;
 	}
 	
-	@PostMapping("/compte")
-	public String enregistrementCompte(Utilisateur utilisateur) {
-		System.out.println("entree post enreg compte");
-		/**
-		utilisateur.setEnabled(true);
-		String password = utilisateur.getPassword();
-		utilisateur.setPassword(passwordEncoder.encode(password));
+	@PostMapping("/compte")    // Enregistrement d'un compte
+	public String enregistrementCompte(Utilisateur utilisateur, HttpSession session) {
 		
-		Profil profil = profilRepo.getByPerfil("USER");
-		List<Profil> profils = utilisateur.getProfils();
-		if (profils == null) {
-			
-			profils = new ArrayList<Profil>();
-			profils.add(profil);
-		}else {
-			
-			profils.add(profil);
-		}
-		
-		utilisateur.setProfils(profils);
-		*/
 		userService.ajouterUser(utilisateur);
+		session.setAttribute("USER", utilisateur);
+		session.setAttribute("authentification", true);
 		
 		return "redirect:/";
 	}
