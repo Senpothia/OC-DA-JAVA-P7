@@ -34,7 +34,7 @@ public class UtilisateurController {
 	@PostMapping("/users/{id}")
 	public ResponseEntity<?> oneUser(@PathVariable Integer id) {
 		
-		Utilisateur user = userService.obtenirUser(id);
+		Utilisateur user = userService.obtenirUserParId(id);
 		return new ResponseEntity<>(user, HttpStatus.OK);
 	}
 }

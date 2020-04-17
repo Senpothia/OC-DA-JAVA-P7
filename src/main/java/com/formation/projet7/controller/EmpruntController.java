@@ -29,7 +29,7 @@ public class EmpruntController {
 	@PostMapping("/emprunts/{id}")
 	public ResponseEntity<?> tousLesEmprunts(@PathVariable Integer id){
 		
-		Utilisateur user = userService.obtenirUser(id);
+		Utilisateur user = userService.obtenirUserParId(id);
 		List<Emprunt> emprunts = empruntService.listerUserEmprunt(user);
 		return new ResponseEntity<>(emprunts, HttpStatus.OK);
 		

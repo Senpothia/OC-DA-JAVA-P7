@@ -78,7 +78,7 @@ public class BiblioController {
 	@PostMapping("/compte")
 	public String enregistrementCompte(Utilisateur utilisateur) {
 		System.out.println("entree post enreg compte");
-		
+		/**
 		utilisateur.setEnabled(true);
 		String password = utilisateur.getPassword();
 		utilisateur.setPassword(passwordEncoder.encode(password));
@@ -95,6 +95,7 @@ public class BiblioController {
 		}
 		
 		utilisateur.setProfils(profils);
+		*/
 		userService.ajouterUser(utilisateur);
 		
 		return "redirect:/";
@@ -116,9 +117,7 @@ public class BiblioController {
 			System.out.println("Role de l'utilisateur: " + profil);
 		}
 		return "ok";
-		
 	
-		
 	}
 	
 

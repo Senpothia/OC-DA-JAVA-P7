@@ -8,6 +8,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.formation.projet7.model.Profil;
@@ -22,6 +23,12 @@ public class UserService implements IUserService {
 	@Autowired
 	UserRepo userRepo;
 	
+	@Autowired
+	ProfilRepo profilRepo;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
 	@Override
 	public List<Utilisateur> listerUsers() {
 		
@@ -30,7 +37,7 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public Utilisateur obtenirUser(Integer id) {
+	public Utilisateur obtenirUserParId(Integer id) {
 		
 		Utilisateur user = userRepo.getOne(id);
 		return user;
@@ -52,8 +59,24 @@ public class UserService implements IUserService {
 
 	@Override
 	public void ajouterUser(Utilisateur user) {
-		userRepo.save(user);
+		user.setEnabled(true);
+		String password = user.getPassword();
 		
+		user.setPassword(passwordEncoder.encode(password));
+		
+		Profil profil = profilRepo.getByPerfil("USER");
+		List<Profil> profils = user.getProfils();
+		if (profils == null) {
+			
+			profils = new ArrayList<Profil>();
+			profils.add(profil);
+		}else {
+			
+			profils.add(profil);
+		}
+		
+		user.setProfils(profils);
+		userRepo.save(user);
 	}
 
 	@Override
@@ -84,7 +107,6 @@ public class UserService implements IUserService {
 			profils.add(profil);
 		}
 		return profils;
-		
 		
 	}
 
