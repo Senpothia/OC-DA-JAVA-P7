@@ -28,7 +28,7 @@ public class OuvragesController {
  		return ouvrages; 
 	}
 	
-	@PostMapping("/ouvrage/{id}")
+	@GetMapping("/ouvrage/{id}")
 	public ResponseEntity<?> unOuvrage(@PathVariable Integer id) {
 		
 		Ouvrage ouvrage = ouvrageService.obtenirOuvrage(id);
